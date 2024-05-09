@@ -3,7 +3,7 @@ Allison Chan<br>
 Brandyn K. Lee <br>
 Eric Crouse <br>
 
-To view streamlit deployment, please visit: https://mushroom-identification.streamlit.app/ <br>
+To view streamlit deployment, please visit: https://mushroom-poison-identification.streamlit.app/ <br>
 
 To run this project:
 1. Clone this repository.
