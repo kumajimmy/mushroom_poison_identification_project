@@ -1,6 +1,9 @@
-Allison Chan (6905922727)
-Brandyn K. Lee (2422176714)
-Eric Crouse (9271913867)
+Made by Master’s students in spring 2024 DSCI551 (Foundations of Data Management):<br>
+Allison Chan<br>
+Brandyn K. Lee <br>
+Eric Crouse <br>
+
+To view streamlit deployment, please visit: https://mushroom-identification.streamlit.app/ <br>
 
 To run this project:
 1. Clone this repository.
@@ -45,4 +48,3 @@ Streamlit: In order to view content of final_project.py, please visit https://mu
 Data Base Manager:
 1. From the cloned repository directory as the root with the virtual environment actiivated, from the command line, run “python3 database_backend_mushroom.py”
 2. Please follow instructions shown in command line terminal to run CRUD operations.
-
