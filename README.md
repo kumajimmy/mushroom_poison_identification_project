@@ -3,7 +3,7 @@ Allison Chan<br>
 Brandyn K. Lee <br>
 Eric Crouse <br>
 
-To view streamlit deployment, please visit: https://mushroom-poison-identification.streamlit.app/ <br>
+To view streamlit deployment, please visit: https://mushroom-poison-identification-project.streamlit.app/ <br>
 
 ## To run this project:
 1. Clone this repository.
@@ -22,8 +22,8 @@ To view streamlit deployment, please visit: https://mushroom-poison-identificati
   }
 }
 ```
-8. In the cloned repository, create a file named config.py and add your default firebase reference URL as “firebase_url = “default_reference/.json” 
-<tb><tb><tb>Also in the config.py file, create a dictionary named “DATABASE_URLS”  with the key as the number starting from 0 (ie, 0-7) and the values as the reference URLs for the databases created in step 7.
+8. In the cloned repository, open the config.py and change the firebase_url to your default firebase reference URL as “firebase_url = “default_reference/.json” 
+<tb><tb><tb>Also in the config.py file, modify the dictionary named “DATABASE_URLS” and change the reference URL values to the ones created in step 7.
 9. From the cloned repository direcotry as the root and virtual environment activated, from the command line, run “python3 distribute_data.py”; this will populate the databases created in step 7 via a hashing function and requests library utilizing the Firebase REST API. Check Firebase console to confirm population.
 10. Push repository to github to deploy on streamlit. Make sure your have an account on Steamlit, and it is connected to pushed github. 
 
@@ -39,14 +39,12 @@ To view streamlit deployment, please visit: https://mushroom-poison-identificati
   This file is used in step 6 of how to run this project providing key mapping information for attributes names and values.
 5. requirements.txt<br>
   This file is used to install necessary depenedencies to run project in virtual environment.
-
-#### Files to be created if trying to reproduce project:
-1. config.py<br>
+6. config.py<br>
   This file is created in step 8 and contains the default firebase_url and the 8 additional firebase reference locations.
 
 
 ##### Front End:
-Streamlit: In order to view content of final_project.py, please visit https://mushroom-identification.streamlit.app/.
+Streamlit: In order to view content of final_project.py, please visit https://mushroom-poison-identification.streamlit.app/.
 
 ##### Data Base Manager:
 1. From the cloned repository directory as the root with the virtual environment actiivated, from the command line, run “python3 database_backend_mushroom.py”
