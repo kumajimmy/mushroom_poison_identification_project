@@ -147,20 +147,26 @@ def gen_hash(gillcolor, capcolor, habitat):
 
 def button_click(button_label, picked_features, current_feature, characters):
     picked_features.append(button_label)
-
     ch = mappings[current_feature][button_label]
     characters.append(ch)
     print("characters: ", characters)
-    print(picked_features)
+    print("Picked features:", picked_features)
 
     if len(characters) == 3:
-        if 'df' not in st.session_state:
-            st.session_state['df'] = load_df(characters, current_feature)
-        else:
-            st.session_state["df"] = load_df(characters, current_feature)
-    if len(characters) > 3:
+        st.session_state['df'] = load_df(characters, current_feature)
+        if st.session_state['df'].empty:
+            handle_empty_dataframe()  
+            return  
+
+    if len(characters) > 3 and not st.session_state['df'].empty:
         retrieved_df = st.session_state['df']
         recalculate(retrieved_df, characters)
+
+def handle_empty_dataframe():
+    """Handle scenarios where the DataFrame is empty after data loading."""
+    st.session_state['show_restart'] = "No matches found. Please adjust your selections or restart."
+    st.error("No matches found for the selected characteristics. Please restart and try a different combination.")
+    st.session_state['data_exists'] = False  
 
 
 def selectionPanel():
