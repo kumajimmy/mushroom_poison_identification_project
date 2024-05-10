@@ -4,6 +4,7 @@ import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
 import hashlib
+from config import DATABASE_URLS
 
 # Set page configuration
 st.set_page_config(
@@ -97,16 +98,16 @@ feature_map = {
     "population": ["abundant","clustered","numerous", "scattered","several","solitary"]
 }
 
-DATABASE_URLS = {
-    0: "https://dsci551-project-af6fd-db0.firebaseio.com/",
-    1: "https://dsci551-project-af6fd-db1.firebaseio.com/",
-    2: "https://dsci551-project-af6fd-db2.firebaseio.com/",
-    3: "https://dsci551-project-af6fd-db3.firebaseio.com/",
-    4: "https://dsci551-project-af6fd-db4.firebaseio.com/",
-    5: "https://dsci551-project-af6fd-db5.firebaseio.com/",
-    6: "https://dsci551-project-af6fd-db6.firebaseio.com/",
-    7: "https://dsci551-project-af6fd-db7.firebaseio.com/",
-}
+#DATABASE_URLS = {
+#    0: "https://dsci551-project-af6fd-db0.firebaseio.com/",
+#    1: "https://dsci551-project-af6fd-db1.firebaseio.com/",
+#    2: "https://dsci551-project-af6fd-db2.firebaseio.com/",
+#    3: "https://dsci551-project-af6fd-db3.firebaseio.com/",
+#    4: "https://dsci551-project-af6fd-db4.firebaseio.com/",
+#    5: "https://dsci551-project-af6fd-db5.firebaseio.com/",
+#    6: "https://dsci551-project-af6fd-db6.firebaseio.com/",
+#    7: "https://dsci551-project-af6fd-db7.firebaseio.com/",
+#}
 
 #mapping dictionaries
 mappings = {
@@ -233,16 +234,15 @@ def selectionPanel():
             st.rerun()
 
 def load_df(characters, current_feature):
-    print("inside load_df")
+    print("Inside load_df")
     df = pd.DataFrame()
     progress_value = st.session_state.get("progress_value", 0)
     if len(characters) == 3:
         gillcolor, capcolor, habitat = characters[0], characters[1], characters[2]
-
         db_id = gen_hash(gillcolor, capcolor, habitat)
-        print("db id:", db_id)
+        print("DB id:", db_id)
         base_url = DATABASE_URLS[db_id]
-        query_url = f"{base_url}.json?orderBy=\"gill-color\"&equalTo=\"{gillcolor}\""
+        query_url = f"{base_url}.json"
 
         try:
             response = requests.get(query_url)
@@ -250,14 +250,14 @@ def load_df(characters, current_feature):
             data = response.json()
             if data:
                 df = pd.DataFrame(data.values())
-                df = df[(df['cap-color'] == capcolor) & (df['habitat'] == habitat)]
+                df = df[(df['gill-color'] == gillcolor) & (df['cap-color'] == capcolor) & (df['habitat'] == habitat)]
                 print(df)
 
                 if df.empty:
                     st.session_state['show_restart'] = "No matches. Please restart."
                 else:
-                    perc_edible = len(df[df['poisonous'] == 'e']) / len(df)
-                    print("percent edible:", str(perc_edible))
+                    perc_edible = len(df[df['poisonous'] == 'e']) / len(df) if len(df) > 0 else 0
+                    print("Percent edible:", str(perc_edible))
                     st.session_state["progress_value"] = perc_edible
                     slider(progress_value)
 
@@ -268,12 +268,12 @@ def load_df(characters, current_feature):
         except requests.RequestException as e:
             print(f"Failed to fetch data: {e}")
             st.session_state['show_restart'] = "Error fetching data. Please try again."
-
     else:
         st.session_state["progress_value"] = 0
         slider(progress_value)
 
     return df
+
 
 def recalculate(df, characters):
     print("inside recalculate")
