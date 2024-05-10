@@ -98,16 +98,6 @@ feature_map = {
     "population": ["abundant","clustered","numerous", "scattered","several","solitary"]
 }
 
-#DATABASE_URLS = {
-#    0: "https://dsci551-project-af6fd-db0.firebaseio.com/",
-#    1: "https://dsci551-project-af6fd-db1.firebaseio.com/",
-#    2: "https://dsci551-project-af6fd-db2.firebaseio.com/",
-#    3: "https://dsci551-project-af6fd-db3.firebaseio.com/",
-#    4: "https://dsci551-project-af6fd-db4.firebaseio.com/",
-#    5: "https://dsci551-project-af6fd-db5.firebaseio.com/",
-#    6: "https://dsci551-project-af6fd-db6.firebaseio.com/",
-#    7: "https://dsci551-project-af6fd-db7.firebaseio.com/",
-#}
 
 #mapping dictionaries
 mappings = {

@@ -13,22 +13,9 @@ def fetch_attributes(url):
     else:
         raise Exception("Failed to fetch data")
 
-##firebase db containing the mapping data
-#firebase_url = "https://dsci551-project-af6fd-default-rtdb.firebaseio.com/.json"
 
 #load keys/attributes (of the target and feature variables) from Firebase
 attributes = fetch_attributes(firebase_url)['key']
-
-#DATABASE_URLS = {
-#    0: "https://dsci551-project-af6fd-db0.firebaseio.com/",
-#    1: "https://dsci551-project-af6fd-db1.firebaseio.com/",
-#    2: "https://dsci551-project-af6fd-db2.firebaseio.com/",
-#    3: "https://dsci551-project-af6fd-db3.firebaseio.com/",
-#    4: "https://dsci551-project-af6fd-db4.firebaseio.com/",
-#    5: "https://dsci551-project-af6fd-db5.firebaseio.com/",
-#    6: "https://dsci551-project-af6fd-db6.firebaseio.com/",
-#    7: "https://dsci551-project-af6fd-db7.firebaseio.com/",
-#}
 
 def gen_hash(gillcolor, capcolor, habitat):
     new_string = f"{gillcolor}{capcolor}{habitat}"
